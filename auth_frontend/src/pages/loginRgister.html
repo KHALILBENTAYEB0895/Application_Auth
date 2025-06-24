@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth Forms</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .form-container {
+            transition: all 0.5s ease;
+        }
+        .tab-active {
+            position: relative;
+        }
+        .tab-active:after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #6366f1;
+            border-radius: 3px;
+        }
+        .input-field:focus + label, .input-field:not(:placeholder-shown) + label {
+            transform: translateY(-24px) scale(0.85);
+            color: #6366f1;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="bg-white rounded-xl shadow-xl overflow-hidden w-full max-w-md">
+        <!-- Tab Buttons -->
+        <div class="flex border-b">
+            <button id="login-tab" class="flex-1 py-4 px-6 font-medium text-gray-600 hover:text-indigo-500 tab-active">
+                <i class="fas fa-sign-in-alt mr-2"></i>Login
+            </button>
+            <button id="register-tab" class="flex-1 py-4 px-6 font-medium text-gray-600 hover:text-indigo-500">
+                <i class="fas fa-user-plus mr-2"></i>Register
+            </button>
+        </div>
+        
+        <!-- Forms Container -->
+        <div class="p-8">
+            <!-- Login Form -->
+            <div id="login-form" class="form-container">
+                <div class="flex justify-center mb-8">
+                    <div class="bg-indigo-100 p-3 rounded-full">
+                        <i class="fas fa-lock text-indigo-600 text-2xl"></i>
+                    </div>
+                </div>
+                <form>
+                    <div class="relative mb-6">
+                        <input type="email" id="login-email" class="input-field w-full px-4 py-2 border-b-2 border-gray-300 focus:border-indigo-500 focus:outline-none peer" placeholder=" " required>
+                        <label for="login-email" class="absolute left-4 top-2.5 text-gray-500 transition-all duration-200 pointer-events-none peer-focus:text-indigo-500">Email Address</label>
+                        <div class="absolute right-4 top-3">
+                            <i class="fas fa-envelope text-gray-400 peer-focus:text-indigo-500"></i>
+                        </div>
+                    </div>
+                    <div class="relative mb-6">
+                        <input type="password" id="login-password" class="input-field w-full px-4 py-2 border-b-2 border-gray-300 focus:border-indigo-500 focus:outline-none peer" placeholder=" " required>
+                        <label for="login-password" class="absolute left-4 top-2.5 text-gray-500 transition-all duration-200 pointer-events-none peer-focus:text-indigo-500">Password</label>
+                        <div class="absolute right-4 top-3">
+                            <i class="fas fa-lock text-gray-400 peer-focus:text-indigo-500"></i>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="flex items-center">
+                            <input type="checkbox" id="remember-me" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                            <label for="remember-me" class="ml-2 block text-sm text-gray-600">Remember me</label>
+                        </div>
+                        <a href="#" class="text-sm text-indigo-600 hover:text-indigo-500">Forgot password?</a>
+                    </div>
+                    <button type="submit" class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition duration-200 shadow-md hover:shadow-lg">
+                        Sign In
+                    </button>
+                    <div class="mt-4 text-center text-sm text-gray-600">
+                        Don't have an account? <a href="#" id="switch-to-register" class="text-indigo-600 hover:text-indigo-500 font-medium">Register</a>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Registration Form (hidden by default) -->
+            <div id="register-form" class="form-container hidden">
+                <div class="flex justify-center mb-8">
+                    <div class="bg-indigo-100 p-3 rounded-full">
+                        <i class="fas fa-user-edit text-indigo-600 text-2xl"></i>
+                    </div>
+                </div>
+                <form>
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div class="relative">
+                            <input type="text" id="first-name" class="input-field w-full px-4 py-2 border-b-2 border-gray-300 focus:border-indigo-500 focus:outline-none peer" placeholder=" " required>
+                            <label for="first-name" class="absolute left-4 top-2.5 text-gray-500 transition-all duration-200 pointer-events-none peer-focus:text-indigo-500">First Name</label>
+                            <div class="absolute right-4 top-3">
+                                <i class="fas fa-user text-gray-400 peer-focus:text-indigo-500"></i>
+                            </div>
+                        </div>
+                        <div class="relative">
+                            <input type="text" id="last-name" class="input-field w-full px-4 py-2 border-b-2 border-gray-300 focus:border-indigo-500 focus:outline-none peer" placeholder=" " required>
+                            <label for="last-name" class="absolute left-4 top-2.5 text-gray-500 transition-all duration-200 pointer-events-none peer-focus:text-indigo-500">Last Name</label>
+                            <div class="absolute right-4 top-3">
+                                <i class="fas fa-user text-gray-400 peer-focus:text-indigo-500"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative mb-6">
+                        <input type="email" id="register-email" class="input-field w-full px-4 py-2 border-b-2 border-gray-300 focus:border-indigo-500 focus:outline-none peer" placeholder=" " required>
+                        <label for="register-email" class="absolute left-4 top-2.5 text-gray-500 transition-all duration-200 pointer-events-none peer-focus:text-indigo-500">Email Address</label>
+                        <div class="absolute right-4 top-3">
+                            <i class="fas fa-envelope text-gray-400 peer-focus:text-indigo-500"></i>
+                        </div>
+                    </div>
+                    <div class="relative mb-6">
+                        <input type="password" id="register-password" class="input-field w-full px-4 py-2 border-b-2 border-gray-300 focus:border-indigo-500 focus:outline-none peer" placeholder=" " required>
+                        <label for="register-password" class="absolute left-4 top-2.5 text-gray-500 transition-all duration-200 pointer-events-none peer-focus:text-indigo-500">Password</label>
+                        <div class="absolute right-4 top-3">
+                            <i class="fas fa-lock text-gray-400 peer-focus:text-indigo-500"></i>
+                        </div>
+                    </div>
+                    <div class="relative mb-6">
+                        <input type="password" id="confirm-password" class="input-field w-full px-4 py-2 border-b-2 border-gray-300 focus:border-indigo-500 focus:outline-none peer" placeholder=" " required>
+                        <label for="confirm-password" class="absolute left-4 top-2.5 text-gray-500 transition-all duration-200 pointer-events-none peer-focus:text-indigo-500">Confirm Password</label>
+                        <div class="absolute right-4 top-3">
+                            <i class="fas fa-lock text-gray-400 peer-focus:text-indigo-500"></i>
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <div class="flex items-center">
+                            <input type="checkbox" id="terms" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded" required>
+                            <label for="terms" class="ml-2 block text-sm text-gray-600">I agree to the <a href="#" class="text-indigo-600 hover:text-indigo-500">Terms and Conditions</a></label>
+                        </div>
+                    </div>
+                    <button type="submit" class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition duration-200 shadow-md hover:shadow-lg">
+                        Create Account
+                    </button>
+                    <div class="mt-4 text-center text-sm text-gray-600">
+                        Already have an account? <a href="#" id="switch-to-login" class="text-indigo-600 hover:text-indigo-500 font-medium">Sign In</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+    </div>
+
+    <script>
+        // Tab switching functionality
+        const loginTab = document.getElementById('login-tab');
+        const registerTab = document.getElementById('register-tab');
+        const loginForm = document.getElementById('login-form');
+        const registerForm = document.getElementById('register-form');
+        const switchToRegister = document.getElementById('switch-to-register');
+        const switchToLogin = document.getElementById('switch-to-login');
+
+        function showLogin() {
+            loginTab.classList.add('tab-active');
+            registerTab.classList.remove('tab-active');
+            loginForm.classList.remove('hidden');
+            registerForm.classList.add('hidden');
+        }
+
+        function showRegister() {
+            registerTab.classList.add('tab-active');
+            loginTab.classList.remove('tab-active');
+            registerForm.classList.remove('hidden');
+            loginForm.classList.add('hidden');
+        }
+
+        loginTab.addEventListener('click', showLogin);
+        registerTab.addEventListener('click', showRegister);
+        switchToRegister.addEventListener('click', function(e) {
+            e.preventDefault();
+            showRegister();
+        });
+        switchToLogin.addEventListener('click', function(e) {
+            e.preventDefault();
+            showLogin();
+        });
+
+        // Form submission handling (you would typically handle actual submission with backend)
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Form would be submitted in a real application');
+            });
+        });
+    </script>
+</body>
+</html>
